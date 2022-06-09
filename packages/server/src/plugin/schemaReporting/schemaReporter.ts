@@ -1,14 +1,14 @@
-import fetch from 'node-fetch';
-import type { GraphQLRequest } from '../../externalTypes';
-import type { Logger } from '@apollo/utils.logger';
-import type {
-  SchemaReport,
-  SchemaReportMutationVariables,
-  SchemaReportMutation,
-  ReportSchemaResponse,
-} from './generated/operations';
 import type { Fetcher } from '@apollo/utils.fetcher';
+import type { Logger } from '@apollo/utils.logger';
+import fetch from 'node-fetch';
+import type { GraphQLRequest } from '../..';
 import { version } from '../../../package.json';
+import type {
+  ReportSchemaResponse,
+  SchemaReport,
+  SchemaReportMutation,
+  SchemaReportMutationVariables,
+} from './generated/operations';
 
 export const schemaReportGql = `mutation SchemaReport($report: SchemaReport!, $coreSchema: String) {
   reportSchema(report: $report, coreSchema: $coreSchema) {

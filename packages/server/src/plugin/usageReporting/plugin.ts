@@ -1,9 +1,9 @@
 import { Report, ReportHeader, Trace } from '@apollo/usage-reporting-protobuf';
 import type { Fetcher, FetcherResponse } from '@apollo/utils.fetcher';
 import {
-  usageReportingSignature,
   calculateReferencedFieldsByType,
   ReferencedFieldsByType,
+  usageReportingSignature,
 } from '@apollo/utils.usagereporting';
 import retry from 'async-retry';
 import { GraphQLSchema, printSchema } from 'graphql';
@@ -17,13 +17,17 @@ import type {
   GraphQLRequestContextDidResolveOperation,
   GraphQLRequestContextWillSendResponse,
   GraphQLRequestListener,
-  GraphQLServerListener,
   GraphQLServerContext,
-} from '../../externalTypes';
-import type { InternalApolloServerPlugin } from '../../internalPlugin';
-import type { HeaderMap } from '../../runHttpQuery';
-import { computeCoreSchemaHash } from '../schemaReporting';
-import { dateToProtoTimestamp, TraceTreeBuilder } from '../traceTreeBuilder';
+  GraphQLServerListener,
+} from '../..';
+import { version } from '../../../package.json';
+import type { HeaderMap } from '../../internal';
+import {
+  computeCoreSchemaHash,
+  dateToProtoTimestamp,
+  TraceTreeBuilder,
+} from '../internal';
+import type { InternalApolloServerPlugin } from '../../internal';
 import { defaultSendOperationsAsTrace } from './defaultSendOperationsAsTrace';
 import {
   createOperationDerivedDataCache,
@@ -36,7 +40,6 @@ import type {
 } from './options';
 import { OurReport } from './stats';
 import { makeTraceDetails } from './traceDetails';
-import { version } from '../../../package.json';
 
 const reportHeaderDefaults = {
   hostname: os.hostname(),
