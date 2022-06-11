@@ -75,7 +75,7 @@ describe('apollo-server-fastify', () => {
         serverToCleanUp = server;
       }
       app.register(server.createHandler({ path: options?.graphqlPath }));
-      await app.listen(port);
+      await app.listen({ port });
       return createServerInfo(server, app.server);
     },
     async () => {
@@ -118,7 +118,7 @@ describe('apollo-server-fastify', () => {
     }
 
     app.register(server.createHandler(options));
-    await app.listen(port);
+    await app.listen({ port });
 
     return createServerInfo(server, app.server);
   }

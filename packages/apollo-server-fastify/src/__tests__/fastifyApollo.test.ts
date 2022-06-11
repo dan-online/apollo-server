@@ -42,7 +42,7 @@ describe('integration:Fastify', () => {
       await server.start();
       serverToCleanUp = server;
       app.register(server.createHandler());
-      await app.listen(0);
+      await app.listen({ port: 0 });
 
       return app.server;
     },

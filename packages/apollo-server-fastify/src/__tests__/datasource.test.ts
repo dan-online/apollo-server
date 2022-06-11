@@ -65,7 +65,7 @@ describe('apollo-server-fastify', () => {
   let app: FastifyInstance;
 
   beforeAll(async () => {
-    await restAPI.listen(restPort);
+    await restAPI.listen({ port: restPort });
   });
 
   afterAll(async () => {
@@ -95,7 +95,7 @@ describe('apollo-server-fastify', () => {
     app = fastify();
 
     app.register(server.createHandler());
-    await app.listen(0);
+    await app.listen({ port: 0 });
     const { url: uri } = createServerInfo(server, app.server);
 
     const apolloFetch = createApolloFetch({ uri });
@@ -124,7 +124,7 @@ describe('apollo-server-fastify', () => {
     app = fastify();
 
     app.register(server.createHandler());
-    await app.listen(0);
+    await app.listen({ port: 0 });
     const { url: uri } = createServerInfo(server, app.server);
 
     const apolloFetch = createApolloFetch({ uri });
